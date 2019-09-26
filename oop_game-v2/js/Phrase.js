@@ -8,5 +8,8 @@ class Phrase {
     }
 }
 // adds letter placeholders to the display when the game starts.
-addPhraseToDisplay();
+addPhraseToDisplay() {
+    const addPhraseToDisplay = this.phrase
+
+}
 
