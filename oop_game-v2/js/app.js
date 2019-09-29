@@ -8,15 +8,17 @@ let buttonKey;
  game.startGame();
 
 //add event listeners for the start button and onscreen keyboard buttons.
-$('#button_start').on('click',(event) => {
+//btn_reset is id in html
+$('#btn_reset').on('click',(event) => {
  game = new game;
  game.startGame();
 
 })
-
-$('button.keyboard').click(function(event) {
-    buttonKey = event.target;
-    return (capturedKey)
+//class is key in html
+$('.key').click(function(event) {
+//game.handleInteraction(key)
+    key = event.target;
+    return (key)
 })
 
 
@@ -26,3 +28,7 @@ $('button.keyboard').click(function(event) {
 $('button.keyboard').click( () => {
     game.handlerInteraction();
 })
+
+
+
+//console.log('Phrase ${index} - phrase: ${phrase.pharse}');
