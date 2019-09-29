@@ -6,7 +6,7 @@
 //The class should include a constructor that initializes the following properties:
 // missed, phrases & activePhrase, Array of phrases
  
-class game {
+class Game {
     constructor() {
     this.missed = 0;
     this.phrases = [
@@ -26,11 +26,11 @@ class game {
 //holds the random phrase again and then will be false until all the letters are guessed 
 
 startGame() {
-    $('#overlay').hide();
-    this.activePharses = this.getRandomPhrases();
-    this.activePharses = new Phrase(this.activePhrases.phrase);
-    this.activePharses.addPhraseToDisplay();
-    this.activePharse = gamejsPhrase 
+    $("#overlay").hide(); 
+    const randomPhrase = random.getRandomPhrases();
+    random.pharses = new Phrase(randomPhrase);
+    random.addPhraseToDisplay();
+    this.activePharse = randomPhrase 
     wonGame = false;
 };
 
@@ -42,7 +42,6 @@ getRandomPhrase() {
     return this.phrases[randomPhrase];
 };
 
-}
 
 //handleInteraction(): this method controls most of the game logic. It checks to see 
 //if the button clicked by the player matches a letter in the phrase
@@ -58,7 +57,7 @@ handleInteraction(button) {
     ($(button).prop('disabled', true));
     if (this.activePharse.checkLetterBox($letterBox)) {
         this.activePharse.showMatchedLetter(button.$letterBox)
-        $(button).addClass('chosen;')
+        $(button).addClass('chosen');
     } else {
         $(button).addClass('wrong');
         this.removeLife();
@@ -66,8 +65,9 @@ handleInteraction(button) {
     if (this.checkForWin()) {
         this.gameOver();
     } 
-    
 };
+
+
 //lose life when the user picks the wrong letter causing the blue hearts to turn gray
 //if guessed 5 times then the game ends 
 removeLife() {
@@ -76,7 +76,11 @@ removeLife() {
     if(this.lostHeart == 5) {
         this.gameOver(false)
     }
- };
+};
+
+
+
+
 
 //check for win
 //checkForWin() {
@@ -89,5 +93,5 @@ removeLife() {
 //resetGame(){
 
 //gameOver(wonGame)
-}
 
+};

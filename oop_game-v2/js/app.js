@@ -4,7 +4,7 @@
 
 let buttonKey;
  //app.js -create a new instance of the Game class
- const game = new game();
+ const game = new Game();
  game.startGame();
 
 //add event listeners for the start button and onscreen keyboard buttons.
