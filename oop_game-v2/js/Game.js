@@ -19,14 +19,20 @@ class game {
     this.activePhrase = null;
 }
 
-//startGame(): hides the start screen overlay, to show the buttons and phrases starts the game with a random phrase 
-//id overlay in html
+//startGame(): hides the start screen overlay, to show the buttons and phrases starts the 
+//game with a random phrase id overlay in html
+//adds phrase to the board by calling the addPhraseToDisplay() method on the active Phrase
+//object. it holds the random phrase then creates a new one then displays it to the board
+//holds the random phrase again and then will be false until all the letters are guessed 
+
 startGame() {
     $('#overlay').hide();
     this.activePharses = this.getRandomPhrases();
     this.activePharses = new Phrase(this.activePhrases.phrase);
     this.activePharses.addPhraseToDisplay();
-
+    this.activePharse = gamejsPhrase 
+    wonGame = false;
+};
 
 //calls the getRandomPhrase() method, 
 //and sets the activePhrase property with the chosen phrase
@@ -34,21 +40,9 @@ startGame() {
 getRandomPhrase() {
     let randomPhrase = Math.floor(Math.random() * (this.phrases.length));
     return this.phrases[randomPhrase];
-
+};
 
 }
-};
-// adds phrase 
-//to the board by calling the addPhraseToDisplay() method on the active Phrase
-//object. it holds the random phrase then creates a new one then displays it to the board
-//holds the random phrase again and then will be false until all the letters are guessed 
-const gamejsPhrase = gamejs.getRandomPhrase()
-    gamejsPhrase = new Phrase (gamejsPhrase);
-    gamejs.phrase.addPhraseToDisplay()
-    this.activePharse = gamejsPhrase 
-    youWin = false;
-
-
 
 //handleInteraction(): this method controls most of the game logic. It checks to see 
 //if the button clicked by the player matches a letter in the phrase
@@ -73,7 +67,7 @@ handleInteraction(button) {
         this.gameOver();
     } 
     
-
+};
 //lose life when the user picks the wrong letter causing the blue hearts to turn gray
 //if guessed 5 times then the game ends 
 removeLife() {
@@ -83,7 +77,7 @@ removeLife() {
         this.gameOver(false)
     }
  };
-}
+
 //check for win
 //checkForWin() {
 
