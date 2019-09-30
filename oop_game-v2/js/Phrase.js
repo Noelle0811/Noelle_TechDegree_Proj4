@@ -16,8 +16,8 @@ class Phrase {
 //places phrase into different arrays 
 addPhraseToDisplay() {
     const ul = document.querySelector('#phrase ul');
-    const addPhraseToDisplay = this.Phrase;
-    const splitPhrase = this.phrase.split('');
+    //const addPhraseToDisplay = this.Phrase;
+    const splitPhrase = this.Phrase.split('');
     splitPhrase.forEach(letter => {
     const li = document.createElement('li');
     ul.append(li);

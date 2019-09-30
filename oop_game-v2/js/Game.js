@@ -31,7 +31,6 @@ startGame() {
     //randomPhrase.addPhraseToDisplay();
     this.activePhrase = randomPhrase 
     this.activePhrase.addPhraseToDisplay();
-    wonGame = false;
 };
 
 //calls the getRandomPhrase() method, 
@@ -55,8 +54,8 @@ getRandomPhrase() {
 handleInteraction(button) {
    let $letterBox = ($('button').text());
     ($(button).prop('disabled', true));
-    if (this.activePharse.checkLetterBox($letterBox)) {
-        this.activePharse.showMatchedLetter(button.$letterBox)
+    if (this.activePhrase.checkLetterBox($letterBox)) {
+        this.activePhrase.matchedLetter(button.$letterBox)
         $(button).addClass('chosen');
     } else {
         $(button).addClass('wrong');
@@ -79,19 +78,67 @@ removeLife() {
 };
 
 
+//check for win this method checks to see if the player has revealed all of the letters in the active phrase.
+checkForWin() {
+    const allLetters = document.querySelectorAll('.letter').length;
+    const letterActive =document.querySelectorAll('.show').length;
+        if(letterActive === allLetters ) {
+            return true 
+        } else {
+            return false
+        }
+    }
+
+
+//this method removes a life from the scoreboard, by replacing one of the liveHeart.png images with a lostHeart.png
+//and increments the 'missed' property. If the player has five missed guesses (i.e they're out of lives), then end the game by calling the gameOver() method.
+removeLife(){
+    const liveHeart = document.getElementsByClassName('img');
+    liveHeart[this.missed].src ="images/lostHeart.png";
+    liveHeart[this.missed].alt = "Lost Icon"
+    this.missed +=1;
+    if (this.missed === 5) {
+        this.gameOver(false);
+        this.reset();
+    }
+}
+
+
+// this method displays the original start screen overlay, and depending on the outcome of the game, updates the overlay 
+//h1 element with a friendly win or loss message,and replaces the overlay’s start CSS class with either the win or lose CSS class and will reset
+gameOver(wonGame) {
+    ($('#overlay')).show();
+        if (wonGame === true) {
+            messageShow.textContent = 'You Won The Game!!';
+            overlay.addClass('won').removeClass('lose');
+            overlay.addClass.add('won');
+        } else {
+            messageShow.textContent = 'Sorry, You Lost.';
+            overlay.addClass('lost').removeClass('won');
+            overlay.addClass.add('lose');
+        }
+
+        $('#overlay').show();
+
+        //game and lives resetting
+        for (let i = 0; i < $('#score li img').length; i++) {
+            $('#score li img')[i].src ='images/liveHeart.png';
+        }
+        
+    }
 
 
 
-//check for win
-//checkForWin() {
+}
+
+//After a game is completed, the gameboard needs to be reset so that clicking the "Start Game" button will successfully load a new game.
+//Remove all li elements from the Phrase ul element.
+//Enable all of the onscreen keyboard buttons and update each to use the key CSS class, and not use the chosen or wrong CSS classes.
+//Reset all of the heart images (i.e. the player's lives) in the scoreboard at the bottom of the gameboard to display the liveHeart.png image.
+
+// resetGame() {}
 
 
 
 
-//removeLife(){}
-
-//resetGame(){
-
-//gameOver(wonGame)
-
-};
+//};

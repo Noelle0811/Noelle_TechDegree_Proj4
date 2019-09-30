@@ -2,7 +2,11 @@
  * Project 4 - OOP Game App
  * app.js */
 
-let buttonKey;
+const startButton = document.getElementById('btn_reset');
+const buttonKeyBoard = document.getElementsByClassName('.key');
+
+
+
  //app.js -create a new instance of the Game class
  const game = new Game();
  game.startGame();
@@ -12,12 +16,16 @@ let buttonKey;
 $('#btn_reset').on('click',(event) => {
  game = new game;
  game.startGame();
+ game.rest();
 
 })
+
+
 //class is key in html
 $('.key').click(function(event) {
-//game.handleInteraction(key)
-    key = event.target;
+    let key = event.target;
+   // console.log(key);
+    game.handleInteraction(key)
     return (key)
 })
 
@@ -26,7 +34,7 @@ $('.key').click(function(event) {
 //so that clicking a button calls the handleInteraction() method on the
 // Game object.
 $('button.keyboard').click( () => {
-    game.handlerInteraction();
+    game.handlerInteraction(event, buttonKeyBoard);
 })
 
 
