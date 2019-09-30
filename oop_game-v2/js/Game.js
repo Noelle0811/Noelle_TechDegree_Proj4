@@ -27,10 +27,10 @@ class Game {
 
 startGame() {
     $("#overlay").hide(); 
-    const randomPhrase = random.getRandomPhrases();
-    random.pharses = new Phrase(randomPhrase);
-    random.addPhraseToDisplay();
-    this.activePharse = randomPhrase 
+    const randomPhrase = this.getRandomPhrase();
+    //randomPhrase.addPhraseToDisplay();
+    this.activePhrase = randomPhrase 
+    this.activePhrase.addPhraseToDisplay();
     wonGame = false;
 };
 

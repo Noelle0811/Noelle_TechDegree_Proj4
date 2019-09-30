@@ -15,16 +15,16 @@ class Phrase {
 //Each letter is presented by an empty box, one li element for each letter. 
 //places phrase into different arrays 
 addPhraseToDisplay() {
-    const addPhraseToDisplay = this.phrase;
-    const display = [...addPhraseToDisplay];
+    const ul = document.querySelector('#phrase ul');
+    const addPhraseToDisplay = this.Phrase;
     const splitPhrase = this.phrase.split('');
     splitPhrase.forEach(letter => {
     const li = document.createElement('li');
-    li.append(li);
+    ul.append(li);
     if(letter === '') {
-        li.classList.add("hide space")
+        li.classList.add("space")
     } else {
-        li.classList.add("hide letter") 
+        li.classList.add("hide") 
     }
 
 });
