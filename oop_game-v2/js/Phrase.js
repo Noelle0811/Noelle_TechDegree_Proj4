@@ -8,7 +8,7 @@
 //convert to all lower case 
 class Phrase {
     constructor(phrase) {
-        this.Phrase = phrase.toLowerCase();
+        this.phrase = phrase.toLowerCase();
     }
 
 //addPhraseToDisplay(): this adds letter placeholders to the display when the game starts. 
@@ -16,7 +16,6 @@ class Phrase {
 //places phrase into different arrays 
 addPhraseToDisplay() {
     const ul = document.querySelector('#phrase ul');
-    //const addPhraseToDisplay = this.Phrase;
     const splitPhrase = this.Phrase.split('');
     splitPhrase.forEach(letter => {
     const li = document.createElement('li');
@@ -32,23 +31,28 @@ addPhraseToDisplay() {
 };
 //checks to see if the letter selected by the player matches a 
 //letter in the phrase.
-checkLetter(letter) {
-    if (this.phrase.includes(letter)){
-        return (true);
-    } else {
+checkLetter(keyValue) {
+    let matchedLetter = false;
+    this.phrase.split('')
+    .forEach(letter => {
+      if (keyValue === matchedLetter) {
+          matchedLetter = true;
+      } else {
         return (false);
     }
-}
+})
 
 //reveals the letter(s) on the board that matches the player's selection. 
 //To reveal the matching letter(s), select all of the letter DOM elements that have a 
 //CSS class name that matches the selected letter and replace each selected element's hide CSS 
 //class with the show CSS class.
 showMatchedLetter(letter) {
+    const split = [...this.phrase]
+    split.forEach(letter => {
   $('#pharse ul li').each(function() {
 if ($(this).text() == letter) {
     $(this).attr('class', 'show');
-   }
- });
+     }
+   });
+ }
 }
-};

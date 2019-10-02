@@ -2,7 +2,7 @@
  * Project 4 - OOP Game App
  * Game.js */
 
-
+const overlay = document.querySelector('#overlay');
 //The class should include a constructor that initializes the following properties:
 // missed, phrases & activePhrase, Array of phrases
  
@@ -16,8 +16,10 @@ class Game {
         new Phrase("Beauty Is Found Within"),
         new Phrase("Let It Go")
     ];
-    this.activePhrase = null;
+    this.activePhrase = null; //This is the Phrase object that’s currently in play. The initial value is null.
+    //console.log();
 }
+
 
 //startGame(): hides the start screen overlay, to show the buttons and phrases starts the 
 //game with a random phrase id overlay in html
@@ -26,10 +28,8 @@ class Game {
 //holds the random phrase again and then will be false until all the letters are guessed 
 
 startGame() {
-    $("#overlay").hide(); 
-    const randomPhrase = this.getRandomPhrase();
-    //randomPhrase.addPhraseToDisplay();
-    this.activePhrase = randomPhrase 
+    overlay.style.display = 'none'; 
+    this.activePhrase = this.getRandomPhrase(); 
     this.activePhrase.addPhraseToDisplay();
 };
 
@@ -38,7 +38,8 @@ startGame() {
 //picks a #, stores the phrases Array, acceses the name and picks a random phrase
 getRandomPhrase() {
     let randomPhrase = Math.floor(Math.random() * (this.phrases.length));
-    return this.phrases[randomPhrase];
+    const phrase = this.phrases[randomPhrase]
+    return phrase;
 };
 
 
@@ -52,17 +53,14 @@ getRandomPhrase() {
 //letter's keyboard button, call the showMatchedLetter() method on the phrase, and then 
 //call the checkForWin() method. If the player has won the game, also call the gameOver() method.
 handleInteraction(button) {
-   let $letterBox = ($('button').text());
-    ($(button).prop('disabled', true));
-    if (this.activePhrase.checkLetterBox($letterBox)) {
-        this.activePhrase.matchedLetter(button.$letterBox)
-        $(button).addClass('chosen');
+   if(event.type === 'click') {
+       button.disabled = true;
     } else {
         $(button).addClass('wrong');
         this.removeLife();
     }
-    if (this.checkForWin()) {
-        this.gameOver();
+    if (this.checkForWin()=== true) {
+        this.gameOver(true);
     } 
 };
 
@@ -95,7 +93,7 @@ checkForWin() {
 removeLife(){
     const liveHeart = document.getElementsByClassName('img');
     liveHeart[this.missed].src ="images/lostHeart.png";
-    liveHeart[this.missed].alt = "Lost Icon"
+    liveHeart[this.missed].alt = "Lost img"
     this.missed +=1;
     if (this.missed === 5) {
         this.gameOver(false);
@@ -107,14 +105,15 @@ removeLife(){
 // this method displays the original start screen overlay, and depending on the outcome of the game, updates the overlay 
 //h1 element with a friendly win or loss message,and replaces the overlay’s start CSS class with either the win or lose CSS class and will reset
 gameOver(wonGame) {
+    const messageShow = document.querySelector('#game-over-message');
     ($('#overlay')).show();
-        if (wonGame === true) {
+        if (wonGame == true) {
             messageShow.textContent = 'You Won The Game!!';
-            overlay.addClass('won').removeClass('lose');
+            overlay.removeClass('lose');
             overlay.addClass.add('won');
         } else {
             messageShow.textContent = 'Sorry, You Lost.';
-            overlay.addClass('lost').removeClass('won');
+            overlay.addClass.removeClass('won');
             overlay.addClass.add('lose');
         }
 
@@ -122,7 +121,7 @@ gameOver(wonGame) {
 
         //game and lives resetting
         for (let i = 0; i < $('#score li img').length; i++) {
-            $('#score li img')[i].src ='images/liveHeart.png';
+            $('#liveHeart li img')[i].src ='images/liveHeart.png';
         }
         
     }
@@ -136,9 +135,13 @@ gameOver(wonGame) {
 //Enable all of the onscreen keyboard buttons and update each to use the key CSS class, and not use the chosen or wrong CSS classes.
 //Reset all of the heart images (i.e. the player's lives) in the scoreboard at the bottom of the gameboard to display the liveHeart.png image.
 
-// resetGame() {}
-
-
+// resetGame() {} //reset all buttons
+$('.keyrow button').removeClass('picked');
+$('.keyrow button').removeClass('wrong');
+$('.keyrow button').addClass('key');
+    for (let i = 0; i < ($('.keyrow button')).length; i++ {
+        $('.keyrow button')[i].disabled = false;
+    }
 
 
 //};
