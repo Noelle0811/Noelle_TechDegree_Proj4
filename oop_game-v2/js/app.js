@@ -8,15 +8,16 @@ const buttonKeyBoard = document.getElementsByClassName('.keyrow');
 
 
  //app.js -create a new instance of the Game class
- const game = new Game();
- game.startGame();
+const game = new Game();
+
+game.startGame();
 
 //add event listeners for the start button and onscreen keyboard buttons.
 //btn_reset is id in html
 $('#btn_reset').on('click',(event) => {
- game = new game;
- game.startGame();
- game.reset();
+    game = new game;
+    game.startGame();
+    game.reset();
 
 })
 

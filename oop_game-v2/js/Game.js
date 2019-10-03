@@ -92,12 +92,12 @@ checkForWin() {
 //and increments the 'missed' property. If the player has five missed guesses (i.e they're out of lives), then end the game by calling the gameOver() method.
 removeLife(){
     const liveHeart = document.getElementsByClassName('img');
-    liveHeart[this.missed].src ="images/lostHeart.png";
-    liveHeart[this.missed].alt = "Lost img"
-    this.missed +=1;
-    if (this.missed === 5) {
-        this.gameOver(false);
-        this.reset();
+        liveHeart[this.missed].src ="images/lostHeart.png";
+        liveHeart[this.missed].alt = "Lost img"
+            this.missed +=1;
+                if (this.missed === 5) {
+                this.gameOver(false);
+                this.reset();
     }
 }
 
@@ -139,9 +139,9 @@ gameOver(wonGame) {
 $('.keyrow button').removeClass('picked');
 $('.keyrow button').removeClass('wrong');
 $('.keyrow button').addClass('key');
-    for (let i = 0; i < ($('.keyrow button')).length; i++ {
+    for (let i = 0; i < ($('.keyrow button')).length; i++) {
         $('.keyrow button')[i].disabled = false;
-    }
+    };
 
 
 //};
