@@ -30,7 +30,7 @@ class Phrase {
         })
         
     };
-    
+    //debugger; 
 //checks to see if the letter selected by the player matches a 
 //letter in the phrase.
     checkLetter(keyValue) {

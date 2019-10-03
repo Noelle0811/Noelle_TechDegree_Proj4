@@ -44,4 +44,4 @@ $('buttonkeyboard').click( () => {
 
 
 
-//console.log('Phrase ${index} - phrase: ${phrase.pharse}');
+//console.log('');
