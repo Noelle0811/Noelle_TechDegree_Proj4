@@ -2,6 +2,7 @@
  * Project 4 - OOP Game App
  * Game.js */
 
+
 const overlay = document.querySelector('#overlay');
 //The class should include a constructor that initializes the following properties:
 // missed, phrases & activePhrase, Array of phrases
@@ -52,16 +53,22 @@ getRandomPhrase() {
 //If the phrase includes the guessed letter, add the chosen CSS class to the selected 
 //letter's keyboard button, call the showMatchedLetter() method on the phrase, and then 
 //call the checkForWin() method. If the player has won the game, also call the gameOver() method.
-handleInteraction(button) {
-   if(event.type === 'click') {
-       button.disabled = true;
+handleInteraction(key) {
+let letter = key;
+//    if(event.type === 'click') {
+//        buttonKeyBoard.disabled = true;
+//      }
+    if (this.activePhrase.checkLetter(letter)) {
+        this.activePhrase.showMatchedLetter(letter);
+        button.addClass('chosen');
+        if(this.checkForWin(true)) {
+            this.gameOver();
+        }
+
     } else {
-        $(button).addClass('wrong');
-        this.removeLife();
+        button.addClass = ('wrong')
+        game.removeLife();
     }
-    if (this.checkForWin()=== true) {
-        this.gameOver(true);
-    } 
 };
 
 
@@ -91,10 +98,11 @@ checkForWin() {
 //this method removes a life from the scoreboard, by replacing one of the liveHeart.png images with a lostHeart.png
 //and increments the 'missed' property. If the player has five missed guesses (i.e they're out of lives), then end the game by calling the gameOver() method.
 removeLife(){
-    const liveHeart = document.getElementsByClassName('img');
+    const liveHeart = document.getElementsByClassName('tries');
         liveHeart[this.missed].src ="images/lostHeart.png";
         liveHeart[this.missed].alt = "Lost img"
             this.missed +=1;
+            console.log(this.missed);
                 if (this.missed === 5) {
                 this.gameOver(false);
                 this.reset();

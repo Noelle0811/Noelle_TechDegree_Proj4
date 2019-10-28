@@ -22,7 +22,7 @@ class Phrase {
             const li = document.createElement('li');
             ul.append(li);
             
-            if(letter === '') {
+            if(letter === ' ') {
                 li.classList.add("space")
             } else {
                 li.classList.add("letter") 
@@ -35,30 +35,42 @@ class Phrase {
 //letter in the phrase.
     checkLetter(keyValue) {
         let matchedLetter = false;
-        
         this.phrase.split('')
-        .forEach(letter => {                // need a defined value
-        if (keyValue === matchedLetter) {
+        .forEach(letter => {                
+        if (keyValue === letter) {
             matchedLetter = true;
-        } else {
-            return (false);
+       
         }
     })
+     return matchedLetter;
     };
 
 //reveals the letter(s) on the board that matches the player's selection. 
 //To reveal the matching letter(s), select all of the letter DOM elements that have a 
 //CSS class name that matches the selected letter and replace each selected element's hide CSS 
 //class with the show CSS class.
-    showMatchedLetter(letter) {             // not being read
+    showMatchedLetter() {             // not being read
         const split = [...this.phrase]
         
         split.forEach(letter => {
-            $('#phrase ul li').each(function() {
-                if ($(this).text() === letter) {
-                    $(this).attr('class', 'show');
+            if(key.innerHTML == letter) {
+                let pLetter = document.querySelectorAll('#phrase li')
+                for(let i = 0; i < pletter.length; i++) {
+                    if(pLetter[i].textContent == letter) {
+                        pLetter[i].addClass = 'show letter'
+                    }
                 }
-            });
+            }
         })
-    }
-}  // end of Phrase class
+    };
+    
+    
+            //         $('#phrase ul li').each(function() {
+                
+    //             if ($(this).text() === letter) {
+    //                 $(this).attr('class', 'show');
+    //             }
+    //         });
+    //     })
+    // }
+};    // end of Phrase class
