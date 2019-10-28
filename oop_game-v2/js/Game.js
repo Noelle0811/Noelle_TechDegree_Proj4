@@ -74,13 +74,7 @@ let letter = key;
 
 //lose life when the user picks the wrong letter causing the blue hearts to turn gray
 //if guessed 5 times then the game ends 
-removeLife() {
-    $('li.tries img').eq(this.lostHeart).attr('src', 'images/liveHeart.png');
-    this.missed +=1;
-    if(this.lostHeart == 5) {
-        this.gameOver(false)
-    }
-};
+
 
 
 //check for win this method checks to see if the player has revealed all of the letters in the active phrase.
@@ -98,15 +92,12 @@ checkForWin() {
 //this method removes a life from the scoreboard, by replacing one of the liveHeart.png images with a lostHeart.png
 //and increments the 'missed' property. If the player has five missed guesses (i.e they're out of lives), then end the game by calling the gameOver() method.
 removeLife(){
-    const liveHeart = document.getElementsByClassName('tries');
-        liveHeart[this.missed].src ="images/lostHeart.png";
-        liveHeart[this.missed].alt = "Lost img"
+       $('#scoreboard img[src="images/liveHeart.png"]').last().attr("src","images/lostHeart.png");
             this.missed +=1;
-            console.log(this.missed);
                 if (this.missed === 5) {
                 this.gameOver(false);
                 this.reset();
-    }
+            }
 }
 
 
@@ -118,11 +109,11 @@ gameOver(wonGame) {
         if (wonGame == true) {
             messageShow.textContent = 'You Won The Game!!';
             overlay.removeClass('lose');
-            overlay.addClass.add('won');
+            overlay.addClass('won');
         } else {
             messageShow.textContent = 'Sorry, You Lost.';
-            overlay.addClass.removeClass('won');
-            overlay.addClass.add('lose');
+            overlay.removeClass('won');
+            overlay.addClass('lose');
         }
 
         $('#overlay').show();
