@@ -2,9 +2,6 @@
  * Project 4 - OOP Game App
  * Phrase.js */
 
-
-
-//id in html
 //convert to all lower case 
 class Phrase {
     constructor(phrase) {
@@ -23,14 +20,14 @@ class Phrase {
             ul.append(li);
             
             if(letter === ' ') {
-                li.classList.add("space")
+                li.classList("space")
             } else {
-                li.classList.add("letter") 
+                li.classList("letter") 
             }
         })
         
     };
-    //debugger; 
+
 //checks to see if the letter selected by the player matches a 
 //letter in the phrase.
     checkLetter(keyValue) {
@@ -49,7 +46,7 @@ class Phrase {
 //To reveal the matching letter(s), select all of the letter DOM elements that have a 
 //CSS class name that matches the selected letter and replace each selected element's hide CSS 
 //class with the show CSS class.
-    showMatchedLetter() {             // not being read
+    showMatchedLetter(letter) {             // not being read
         const split = [...this.phrase]
         
         split.forEach(letter => {
@@ -64,13 +61,4 @@ class Phrase {
         })
     };
     
-    
-            //         $('#phrase ul li').each(function() {
-                
-    //             if ($(this).text() === letter) {
-    //                 $(this).attr('class', 'show');
-    //             }
-    //         });
-    //     })
-    // }
 };    // end of Phrase class
