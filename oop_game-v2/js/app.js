@@ -1,8 +1,7 @@
 /* Treehouse FSJS Techdegree
  * Project 4 - OOP Game App
  * app.js */
-
-const button = document.getElementsByClassName('letter');
+const button = document.querySelector('button');
 let buttonKeyBoard = document.getElementsByClassName('.keyrow');
 let key = document.getElementById('qwerty')
 let gameWon;
@@ -13,7 +12,7 @@ const game = new Game();
 
 
 //add event listeners for the start button and onscreen keyboard buttons.
-button.addEventListener("click", () => {  
+button.addEventListener('click',() => {  
     game.startGame();
 });
 
@@ -24,13 +23,11 @@ button.addEventListener("click", () => {
 //should not result in the handleInteraction() method being called.
 //class is key in html
 $('.keyrow').click(function(event) {
-    let key = event.target.innerHTML;
+    let key = event.target;  //.innerHtml
+   console.log(key);
     game.handleInteraction(key)
     
 })
 
 
-
- //keys.forEach(key =>.addEventListener('click', (e) => game.handleInteraction(e.target)), false);
-//console.log('');
 

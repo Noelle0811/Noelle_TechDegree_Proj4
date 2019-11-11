@@ -2,7 +2,7 @@
  * Project 4 - OOP Game App
  * Game.js */
 
-
+//key is the butto itself
 const overlay = document.querySelector('#overlay');
  
 class Game {
@@ -17,8 +17,7 @@ class Game {
         ];
         this.activePhrase = null; //This is the Phrase object that’s currently in play. The initial value is null.
     }
-
-//startGame(): hides the start screen overlay, to show the buttons and phrases starts the 
+ 
 //game with a random phrase id overlay in html
 //adds phrase to the board by calling the addPhraseToDisplay() method on the active Phrase
 //object. it holds the random phrase then creates a new one then displays it to the board
@@ -50,20 +49,17 @@ class Game {
 //letter's keyboard button, call the showMatchedLetter() method on the phrase, and then 
 //call the checkForWin() method. If the player has won the game, also call the gameOver() method.
     handleInteraction(key) {
-    let letter = key;
-//    if(event.type === 'click') {
-//        buttonKeyBoard.disabled = true;
-//      }
-        if (this.activePhrase.checkLetter(letter)) {
-            this.activePhrase.showMatchedLetter(letter);
-            button.addClass('chosen');
+
+        if (this.activePhrase.checkLetter(key)) {
+            this.activePhrase.showMatchedLetter(key);
+            key.classList.add('chosen');           //my function, took my button and gave it a class
             
             if(this.checkForWin(true)) {
                 this.gameOver();
             }
 
         } else {
-            button.addClass = ('wrong')
+            key.classList.add('wrong')
             game.removeLife();
         }
     };
