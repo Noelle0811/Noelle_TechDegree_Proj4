@@ -2,8 +2,6 @@
  * Project 4 - OOP Game App
  * app.js */
 const button = document.querySelector('button');
-let buttonKeyBoard = document.getElementsByClassName('.keyrow');
-let key = document.getElementById('qwerty')
 let gameWon;
 var letter;
  
@@ -22,9 +20,10 @@ button.addEventListener('click',() => {
 //keyboard button. Clicking the space between and around the onscreen keyboard buttons 
 //should not result in the handleInteraction() method being called.
 //class is key in html
-$('.keyrow').click(function(event) {
-    let key = event.target;  //.innerHtml
-   console.log(key);
+
+
+$('.key').click(function(event) { // if it has a class of 'key', we'll target the event 
+    let key = event.target;  // key stores the button element (ex the letter you click) 
     game.handleInteraction(key)
     
 })

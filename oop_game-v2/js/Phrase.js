@@ -13,7 +13,9 @@ class Phrase {
 //places phrase into different arrays 
     addPhraseToDisplay() {
         const ul = document.querySelector('#phrase ul');
+        ul.innerHTML = "";
         const splitPhrase = this.phrase.split('');
+        
         
         // creates li
         splitPhrase.forEach(letter => {
@@ -56,7 +58,6 @@ class Phrase {
             if(keyValue === letter) { //users guess
             
                 let pLetter = document.querySelectorAll('#phrase li')
-                console.log(pLetter);
                 for(let i = 0; i < pLetter.length; i++) { //to show match
                     if (pLetter[i].textContent === letter) { //if true
                         pLetter[i].classList = 'show'
