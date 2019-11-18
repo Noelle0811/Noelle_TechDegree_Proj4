@@ -26,7 +26,7 @@ class Game {
     startGame() {
         overlay.style.display = 'none'; 
         this.activePhrase = this.getRandomPhrase(); 
-        this.activePhrase.addPhraseToDisplay();
+        this.activePhrase.addPhraseToDisplay();  //displays
     };
 
 //calls the getRandomPhrase() method, 
@@ -53,8 +53,8 @@ class Game {
         if (this.activePhrase.checkLetter(key)) {
             this.activePhrase.showMatchedLetter(key);
             key.classList.add('chosen');           //my function, took my button and gave it a class
-            
-            if(this.checkForWin(true)) {
+
+            if(this.checkForWin()) {
                 this.gameOver();
             }
 
@@ -72,12 +72,11 @@ class Game {
 
 //check for win this method checks to see if the player has revealed all of the letters in the active phrase.
     checkForWin() {
-        const allLetters = document.querySelectorAll('.letter').length;
-        const letterActive =document.querySelectorAll('.show').length;
+        const lettersRemaining = document.querySelectorAll('.letter').length;
 
-         if(letterActive === allLetters ) {
+         if(lettersRemaining === 0) {
             return true 
-             } else {
+          } else {
             return false
         }
     }
@@ -99,23 +98,49 @@ class Game {
     gameOver(isTrue) {
      const messageShow = document.querySelector('#game-over-message');
 
+    //  if(gameWon === 'lost') {
+    //      overlay.className = lose;
+    //      overlay.children[1].innerText = 'Sorry, You Lose.';
+
+    //  } else {
+    //      gameWon === 'won';
+    //      overlay.className = 'win';
+    //      overlay.children[1].innerText = 'You won the game!!';
+    //  } 
+
+
+
              if (isTrue) {
-                messageShow.textContent = 'Sorry, You Lost.';
-                ($('#overlay')).addClass('lose');
+            
+                 messageShow.textContent = 'Sorry, You Lose.';
+                 ($('#overlay')).addClass('lose');
+                
                 
              } else {
-                messageShow.textContent = 'You Won The Game!!'
-                ($('#overlay')).addClass('won');
+                overlay.className = 'win';
+                overlay.children[1].innerText = 'You won the game!!';
+                // messageShow.textContent = 'You Won The Game!!';
+                // ($('#overlay')).addClass('won');
+               
             }
 
                 $('#overlay').show();
-
                  //game and lives resetting
-                 for (let i = 0; i < $('#score li img').length; i++) {
-                 $('#liveHeart li img')[i].src ='images/liveHeart.png';
+                 for (let i = 0; i < $('#scoreboard li img').length; i++) {
+                 $('#scoreboard li img')[i].src = "images/liveHeart.png";
         }
+    
         
-    }
+
+
+
+
+
+    } //gameOver } 
+
+        
+        
+
 
 //After a game is completed, the gameboard needs to be reset so that clicking the "Start Game" button will successfully load a new game.
 //Remove all li elements from the Phrase ul element.
@@ -123,12 +148,34 @@ class Game {
 //Reset all of the heart images (i.e. the player's lives) in the scoreboard at the bottom of the gameboard to display the liveHeart.png image.
 
     resetGame() { //reset all buttons
-        $('.keyrow button').removeClass('picked');
+        $('.keyrow button').removeClass('chosen');
         $('.keyrow button').removeClass('wrong');
         $('.keyrow button').addClass('key');
 
         for (let i = 0; i < ($('.keyrow button')).length; i++) {
             $('.keyrow button')[i].disabled = false;
-            }
         }
-}
+    }
+    
+
+    // restartGame() {
+    //     const li = document.querySelectorAll('#phrase li')
+    //     li.forEach(li => {
+    //         li.remove()
+    //     })
+    //     const key = document.querySelectorAll('qwerty');
+    //         key.forEach(key => {
+    //         key.removeAttribute('disabled');
+    //         key.className = 'key';
+
+    //         }
+    //         //restarting lives 
+    //          cons liveHeart = document.querySelectorAll('tries img');
+    //         liveHeart.forEach(life => {
+    //         life.setAttribute('src', 'images/liveHeart.png');
+    //         })
+        
+    };
+
+
+//}
