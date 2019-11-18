@@ -49,14 +49,16 @@ class Game {
 //letter's keyboard button, call the showMatchedLetter() method on the phrase, and then 
 //call the checkForWin() method. If the player has won the game, also call the gameOver() method.
     handleInteraction(key) {
-
+        if(key.tagName === 'BUTTON') {
+            key.disabled = true;  // the selected letter is disabled
+        }
         if (this.activePhrase.checkLetter(key)) {
             this.activePhrase.showMatchedLetter(key);
             key.classList.add('chosen');           //my function, took my button and gave it a class
 
             if(this.checkForWin()) {
                 this.gameOver();
-            }
+            }                                     
 
         } else {
             key.classList.add('wrong')
@@ -85,7 +87,7 @@ class Game {
 //and increments the 'missed' property. If the player has five missed guesses (i.e they're out of lives), then end the game by calling the gameOver() method.
     removeLife(){
        $('#scoreboard img[src="images/liveHeart.png"]').last().attr("src","images/lostHeart.png");
-            this.missed +=1;
+            this.missed += 1;
                 if (this.missed === 5) {
                 this.gameOver(true);
             
@@ -97,7 +99,7 @@ class Game {
 //h1 element with a friendly win or loss message,and replaces the overlay’s start CSS class with either the win or lose CSS class and will reset
     gameOver(isTrue) {
      const messageShow = document.querySelector('#game-over-message');
-
+     
              if (isTrue) {
             
                  messageShow.textContent = 'Sorry, You Lose.';
@@ -122,37 +124,25 @@ class Game {
 //Reset all of the heart images (i.e. the player's lives) in the scoreboard at the bottom of the gameboard to display the liveHeart.png image.
 
 
-        //li elements resetting
-        $('#phrase ul').remove().children()
-        let theNewUL = document.createElement('UL')
-        $('#phrase').append(theNewUL);
+    let oldKeys = document.querySelectorAll('.wrong, .chosen');
+                oldKeys.forEach(key => {
+                    key.disabled = false;
+                    key.className = "key";
+                });
 
-        //button reset class
-        $('.keyrow button').removeClass('chosen')
-        $('.keyrow button').removeClass('wrong')
-        $('.keyrow button').addClass('key')
+                this.missed = 0; //resets all of the hearts
 
-
-        // enable all buttons
-        for(let i = 0; i < $('.keyrow button').length; i++){
-            $('.keyrow button')[i].disabled = false;
-        }
+                const tries = document.querySelectorAll(".tries");
+                tries.forEach((heartImg) => {
+                    heartImg.getElementsByTagName("img")[0].src = "images/liveHeart.png";
+                });
 
 
-
-
-
-
-
-
-
-
-    } //gameOver } 
+    }; //gameOver } 
 
         
         
-};
-
+}; //Class game } 
 
 
     
