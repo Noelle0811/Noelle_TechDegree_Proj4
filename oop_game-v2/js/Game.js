@@ -98,18 +98,6 @@ class Game {
     gameOver(isTrue) {
      const messageShow = document.querySelector('#game-over-message');
 
-    //  if(gameWon === 'lost') {
-    //      overlay.className = lose;
-    //      overlay.children[1].innerText = 'Sorry, You Lose.';
-
-    //  } else {
-    //      gameWon === 'won';
-    //      overlay.className = 'win';
-    //      overlay.children[1].innerText = 'You won the game!!';
-    //  } 
-
-
-
              if (isTrue) {
             
                  messageShow.textContent = 'Sorry, You Lose.';
@@ -119,8 +107,6 @@ class Game {
              } else {
                 overlay.className = 'win';
                 overlay.children[1].innerText = 'You won the game!!';
-                // messageShow.textContent = 'You Won The Game!!';
-                // ($('#overlay')).addClass('won');
                
             }
 
@@ -129,8 +115,33 @@ class Game {
                  for (let i = 0; i < $('#scoreboard li img').length; i++) {
                  $('#scoreboard li img')[i].src = "images/liveHeart.png";
         }
-    
-        
+
+//After a game is completed, the gameboard needs to be reset so that clicking the "Start Game" button will successfully load a new game.
+//Remove all li elements from the Phrase ul element.
+//Enable all of the onscreen keyboard buttons and update each to use the key CSS class, and not use the chosen or wrong CSS classes.
+//Reset all of the heart images (i.e. the player's lives) in the scoreboard at the bottom of the gameboard to display the liveHeart.png image.
+
+
+        //li elements resetting
+        $('#phrase ul').remove().children()
+        let theNewUL = document.createElement('UL')
+        $('#phrase').append(theNewUL);
+
+        //button reset class
+        $('.keyrow button').removeClass('chosen')
+        $('.keyrow button').removeClass('wrong')
+        $('.keyrow button').addClass('key')
+
+
+        // enable all buttons
+        for(let i = 0; i < $('.keyrow button').length; i++){
+            $('.keyrow button')[i].disabled = false;
+        }
+
+
+
+
+
 
 
 
@@ -140,42 +151,13 @@ class Game {
 
         
         
+};
 
 
-//After a game is completed, the gameboard needs to be reset so that clicking the "Start Game" button will successfully load a new game.
-//Remove all li elements from the Phrase ul element.
-//Enable all of the onscreen keyboard buttons and update each to use the key CSS class, and not use the chosen or wrong CSS classes.
-//Reset all of the heart images (i.e. the player's lives) in the scoreboard at the bottom of the gameboard to display the liveHeart.png image.
 
-    resetGame() { //reset all buttons
-        $('.keyrow button').removeClass('chosen');
-        $('.keyrow button').removeClass('wrong');
-        $('.keyrow button').addClass('key');
-
-        for (let i = 0; i < ($('.keyrow button')).length; i++) {
-            $('.keyrow button')[i].disabled = false;
-        }
-    }
+    
+        
     
 
-    // restartGame() {
-    //     const li = document.querySelectorAll('#phrase li')
-    //     li.forEach(li => {
-    //         li.remove()
-    //     })
-    //     const key = document.querySelectorAll('qwerty');
-    //         key.forEach(key => {
-    //         key.removeAttribute('disabled');
-    //         key.className = 'key';
-
-    //         }
-    //         //restarting lives 
-    //          cons liveHeart = document.querySelectorAll('tries img');
-    //         liveHeart.forEach(life => {
-    //         life.setAttribute('src', 'images/liveHeart.png');
-    //         })
-        
-    };
 
 
-//}
